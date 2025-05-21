@@ -8,8 +8,6 @@ import {
 import { UserRole } from '@prisma/client';
 
 export class UserDto {
-  id: number;
-
   @IsNotEmpty()
   name: string;
 
