@@ -3,7 +3,7 @@ import {
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
-import { PrismaService } from 'src/prisma/prisma.service'; // Inject PrismaService
+import { PrismaService } from '../prisma/prisma.service'; // Inject PrismaService
 import { CreateCourseDto } from './dto/create-course.dto';
 import { CreateLessonDto } from './dto/create-lesson.dto';
 import { Course, Lesson } from '@prisma/client';
