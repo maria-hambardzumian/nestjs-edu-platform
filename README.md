@@ -1,44 +1,81 @@
-## Project setup
+## Setup Instructions
 
+1. Clone the repository: 
 ```bash
-$ npm install
+  git clone https://github.com/maria-hambardzumian/nestjs-edu-platform.git && cd nestjs-edu-platform
 ```
 
-## Compile and run the project
-
+2. Install dependencies:
 ```bash
-# development
-$ npm run start
+  npm install
+ ``` 
 
-# watch mode
-$ npm run start:dev
+3. Configure environment variables:
+   Create a `.env` file based on `.env.example`:
+```
+   DATABASE_URL="mysql://login:password@localhost:5432/db"
+   JWT_SECRET="secret"
+   PORT="8080"
+   JWT_EXPIRY_TIME="1d"
+``` 
 
-# production mode
-$ npm run start:prod
+4. Run database migrations using Prisma:
+```bash
+   npx prisma migrate dev
 ```
 
-## Run tests
-
+5. Start the development server:
 ```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+   npm run start:dev
 ```
 
-## Deployment
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
+## Running Tests
 
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
-
+- Run unit tests:
 ```bash
-$ npm install -g @nestjs/mau
-$ mau deploy
+   npm run test
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+
+## API Endpoints
+
+### Auth
+- POST /auth/signup
+- POST /auth/login
+
+### Courses
+- POST /courses (Instructor only)
+- POST /courses/:id/enroll (Student only)
+
+### Lessons
+- GET /courses/:id/lessons (Only for enrolled students)
+
+### Q&A
+- POST /lessons/:id/questions (Student)
+- POST /questions/:id/answer (Instructor)
+
+You can find a full set of testable endpoints in the included Postman collection:
+./postman/microlearning-api.postman_collection.json
+
+## Prisma Schema
+
+The Prisma schema is located at:
+prisma/schema.prisma
+
+This file defines the database models used in the application, including:
+- User (with roles: STUDENT, INSTRUCTOR)
+- Course
+- Lesson
+- Enrollment
+- Question
+
+for update of the schema and generation new client code:
+```bash
+  npx prisma generate
+```
+
+To apply schema changes via migration:
+```bash
+  npx prisma migrate dev --name your_migration_name
+```
