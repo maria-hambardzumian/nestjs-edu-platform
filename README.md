@@ -39,10 +39,16 @@
 
 
 ## API Endpoints
+You can explore the full API endpoints via the Postman collection.
+
+[View Postman Collection](https://www.postman.com/spacecraft-administrator-58528966/nest/collection/bad15rg/edu-platform?action=share&creator=33721094)
 
 ### Auth
 - POST /auth/signup
 - POST /auth/login
+
+### Users
+- GET /users/me
 
 ### Courses
 - POST /courses (Instructor only)
@@ -54,6 +60,7 @@
 ### Q&A
 - POST /lessons/:id/questions (Student)
 - POST /questions/:id/answer (Instructor)
+- GET /courses/:id/questions (For Instructors & enrolled students)
 
 You can find a full set of testable endpoints in the included Postman collection:
 ./postman/microlearning-api.postman_collection.json

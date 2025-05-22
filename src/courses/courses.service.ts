@@ -39,7 +39,7 @@ export class CoursesService {
     createLessonDto: CreateLessonDto,
   ): Promise<Lesson> {
     await this.assertCourseExists(courseId);
-    console.log(courseId, typeof courseId);
+
     return this.prisma.lesson.create({
       data: {
         title: createLessonDto.title,
